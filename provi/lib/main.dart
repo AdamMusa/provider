@@ -14,7 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final counter = Provider.of<Counter>(context);
     return Scaffold(
+      appBar: AppBar(
+        title:Text('Provier count')
+      ),
       body: Center(child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children:<Widget>[
           Text('Vous avez appuyé : '),
           Text('${counter.count}')

@@ -22,7 +22,11 @@ class MyApp extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  Container(
+                 Transform.scale(
+                   scale: 1.5,
+                   alignment: Alignment.center,
+                   transformHitTests: true,
+                   child:  Container(
                       width: 120,
                       height: 100,
                       color: Colors.grey,
@@ -32,6 +36,7 @@ class MyApp extends StatelessWidget {
                         style: TextStyle(fontWeight: FontWeight.bold),
                         textScaleFactor: 1.5,
                       ))),
+                   ),
                   Container(
                       width: 120,
                       height: 100,

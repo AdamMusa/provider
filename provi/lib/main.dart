@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provi/prov.dart';
 import 'package:provi/provider_model.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MaterialApp(
-        home: ChangeNotifierProvider(
-      create: (context) => Counter(),
-      child: MyApp(),
+      home: MultiProvider(
+      providers: [
+        //ChangeNotifierProvider(create: (_)=>Counter()),
+        //ChangeNotifierProvider(create: (_)=>Dec()),
+        Provider<Counter>(create: (context)=>Counter()),
+        Provider<Dec>(create: (context)=>Dec()),
+      ],
+      child: MyApp()
     )));
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final counter = Provider.of<Counter>(context);
+    final dec = Provider.of<Dec>(context);
     return Scaffold(
       appBar: AppBar(title: Text('Provier count')),
       body: Center(
@@ -22,28 +29,23 @@ class MyApp extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                 Transform.scale(
-                   scale: 1.5,
-                   alignment: Alignment.center,
-                   transformHitTests: true,
-                   child:  Container(
-                      width: 120,
-                      height: 100,
-                      color: Colors.grey,
-                      child: Center(
-                          child: Text(
-                        '${counter.count_a}',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                        textScaleFactor: 1.5,
-                      ))),
-                   ),
                   Container(
                       width: 120,
                       height: 100,
                       color: Colors.grey,
                       child: Center(
                           child: Text(
-                        '${counter.count_b}',
+                        '${counter.count}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                        textScaleFactor: 1.5,
+                      ))),
+                  Container(
+                      width: 120,
+                      height: 100,
+                      color: Colors.grey,
+                      child: Center(
+                          child: Text(
+                        '${dec.count_a}',
                         style: TextStyle(fontWeight: FontWeight.bold),
                         textScaleFactor: 1.5,
                       ))),
@@ -58,7 +60,7 @@ class MyApp extends StatelessWidget {
                   color: Colors.grey,
                   child: Center(
                       child: Text(
-                    '${counter.somme()}',
+                    '${counter.count + dec.count_a}',
                     style: TextStyle(fontWeight: FontWeight.bold),
                     textScaleFactor: 1.5,
                   ))),
@@ -72,7 +74,7 @@ class MyApp extends StatelessWidget {
                   ),
                   IconButton(
                     icon: Icon(Icons.add), 
-                    onPressed: counter.increment_b,
+                    onPressed: dec.increment_a,
                     tooltip: 'Counter for b',
                   )
                 ],

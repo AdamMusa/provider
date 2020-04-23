@@ -3,22 +3,27 @@ import 'package:provi/prov.dart';
 import 'package:provi/provider_model.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MaterialApp(
+void main(){
+  Provider.debugCheckInvalidValueType =  null;
+  runApp(
+  MaterialApp(
       home: MultiProvider(
       providers: [
-        //ChangeNotifierProvider(create: (_)=>Counter()),
-        //ChangeNotifierProvider(create: (_)=>Dec()),
-        Provider<Counter>(create: (context)=>Counter()),
-        Provider<Dec>(create: (context)=>Dec()),
+        ChangeNotifierProvider(create: (_)=>Counter()),
+        ChangeNotifierProvider(create: (_)=>Dec()),
+        //Provider<Counter>(create: (context)=>Counter()),
+        //Provider<Dec>(create: (context)=>Dec()),
       ],
       child: MyApp()
     )));
+} 
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final counter = Provider.of<Counter>(context);
     final dec = Provider.of<Dec>(context);
+    
     return Scaffold(
       appBar: AppBar(title: Text('Provier count')),
       body: Center(

@@ -53,7 +53,9 @@ class MyApp extends StatelessWidget {
                         '${dec.count_a}',
                         style: TextStyle(fontWeight: FontWeight.bold),
                         textScaleFactor: 1.5,
-                      ))),
+                      )
+                    )
+                    ),
                 ],
               ),
               SizedBox(
